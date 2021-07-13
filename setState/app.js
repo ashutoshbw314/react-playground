@@ -2,6 +2,7 @@ class Test extends React.Component {
   state = {
     title: 'Health',
     category: 'digestive system',
+    crazy: ''
   }
 
   handleTitleChange = (e) => {
@@ -10,6 +11,10 @@ class Test extends React.Component {
 
   handleCategoryChange = (e) => {
     this.setState({category: e.target.value});
+  }
+
+  handleCrazyChange = (e) => {
+    this.setState({crazy: e.target.value + '...damn! '});
   }
 
   logState = () => {
@@ -28,6 +33,10 @@ class Test extends React.Component {
         <div>
           <label>Category: </label>
           <input type="text" value={this.state.category} onChange={this.handleCategoryChange}/>
+        </div>
+        <div>
+          <label>Crazy input: </label>
+          <input type="text" value={this.state.crazy} onChange={this.handleCrazyChange}/>
         </div>
         <button onClick={this.logState}>Log state</button>
       </div>
