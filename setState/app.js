@@ -1,4 +1,9 @@
-class Test extends React.Component {
+// It contains to separate examples:
+// 1. Crazy Input
+// 2. FunctionInSetState which contains 
+//   2.1 Counter
+
+class CrazyInput extends React.Component {
   state = {
     title: 'Health',
     category: 'digestive system',
@@ -44,4 +49,47 @@ class Test extends React.Component {
   }
 }
 
-ReactDOM.render(<Test />, document.getElementById("main"));
+class FunctionInSetState extends React.Component {
+  render() {
+    return (
+      <div>
+        <Counter purpose="Playing with function argument in setState" /> 
+      </div>
+    )
+  }
+}
+
+class Counter extends React.Component {
+  state = {
+    count: 10,
+  }
+
+  increment = () => {
+    this.setState((prevState, props) => {
+      console.log('previous state: ', prevState);
+      console.log('props: ', props);
+      return {count: prevState.count + 1}
+    })
+  } 
+
+  decrement = () => {
+    this.setState((prevState, props) => {
+      console.log('previous state: ', prevState);
+      console.log('props: ', props);
+      return {count: prevState.count - 1}
+    })
+  } 
+
+  render() {
+    return (
+      <div>
+        <h2>{this.state.count}</h2>
+        <button onClick={this.increment}>+</button>
+        <button onClick={this.decrement}>-</button>
+      </div>
+    )
+  }
+}
+
+
+ReactDOM.render(<FunctionInSetState />, document.getElementById("main"));
